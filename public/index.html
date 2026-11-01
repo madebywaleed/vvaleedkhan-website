@@ -359,6 +359,14 @@
   .co-name { font-size: 18px; letter-spacing: 0.02em; color: var(--paper); text-align: center; }
   .co-name::after { content: " \203A"; color: var(--brass); }
 
+
+  .topnav { position: sticky; top: 0; z-index: 40; background: #A8141B; color: #EDE6D6; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 28px; padding: 14px 64px; }
+  .topnav .brand { font-family: 'Bebas Neue', Oswald, sans-serif; font-size: 30px; letter-spacing: .04em; color: #EDE6D6; text-decoration: none; }
+  .topnav ul { list-style: none; display: flex; flex-wrap: wrap; gap: 6px 22px; margin: 0; padding: 0; }
+  .topnav a { font-family: 'Bebas Neue', Oswald, sans-serif; font-size: 22px; letter-spacing: .05em; color: #EDE6D6; text-decoration: none; }
+  .topnav a:hover { text-decoration: underline; text-underline-offset: 4px; }
+  @media (max-width: 620px) { .topnav { padding: 12px 20px; } .topnav a { font-size: 19px; } }
+
   /* Scroll reveal */
   .reveal { opacity: 0; transform: translateY(28px); transition: opacity .8s, transform .8s cubic-bezier(.2,.8,.2,1); }
   .reveal.in { opacity: 1; transform: none; }
@@ -465,7 +473,7 @@
   </section>
 
   <footer>
-    <p style="margin:0 0 10px;"><a href="/about.html">About</a> &middot; <a href="/privacy.html">Privacy policy</a> &middot; <a href="https://blog.vvaleedkhan.com">Blog</a></p>
+    <p style="margin:0 0 14px;font-size:15px;"><a href="/about.html">About</a> &middot; <a href="/privacy.html">Privacy policy</a> &middot; <a href="https://blog.vvaleedkhan.com">Blog</a> &middot; <a href="mailto:hello@vvaleedkhan.com">hello@vvaleedkhan.com</a></p>
     &copy; <span id="year"></span> vvaleedkhan. All rights reserved.
   </footer>
 
