@@ -1,0 +1,528 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>vvaleedkhan</title>
+<meta name="description" content="Serial founder building businesses, technology and ventures.">
+<meta name="google-adsense-account" content="ca-pub-1356293872894760">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1356293872894760" crossorigin="anonymous"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500&family=Oswald:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --red: #A8141B;
+    --red-deep: #7E0E13;
+    --ink: #0E0C0C;
+    --ink-2: #1E1B1B;
+    --ink-3: #2A2727;
+    --paper: #EDE6D6;
+    --muted: #CFC8B8;
+    --brass: #C9A227;
+    --display: 'Bebas Neue', 'Oswald', sans-serif;
+    --body: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+    --panel-w: 320px;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--ink);
+    color: var(--paper);
+    font-family: var(--body);
+    font-weight: 400;
+    line-height: 1.55;
+    overflow-x: hidden;
+  }
+  a { color: inherit; }
+  img { max-width: 100%; display: block; }
+
+  /* Film grain overlay for the painted, aged feel */
+  body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.07;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    z-index: 50;
+  }
+
+  /* Red painted panel with torn edge */
+  .panel {
+    position: fixed;
+    top: 0; left: 0; bottom: 0;
+    width: var(--panel-w);
+    background: var(--red);
+    clip-path: polygon(0 0, 48% 0, 50% 6%, 47% 14%, 51% 22%, 46% 31%, 54% 40%, 52% 48%, 60% 57%, 58% 66%, 67% 74%, 64% 83%, 80% 90%, 77% 96%, 100% 100%, 0 100%);
+    z-index: 20;
+    display: flex;
+    flex-direction: column;
+    padding: 28px 0 28px 44px;
+    color: var(--ink);
+  }
+  .watch {
+    width: 64px; height: 64px;
+    margin-bottom: 40px;
+    animation: tick 6s steps(60) infinite;
+    transform-origin: 50% 60%;
+  }
+  @keyframes tick { to { transform: rotate(360deg); } }
+  .panel::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='p'><feTurbulence type='fractalNoise' baseFrequency='0.02 0.6' numOctaves='3' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23p)'/></svg>");
+    opacity: 0.18;
+    mix-blend-mode: multiply;
+    pointer-events: none;
+  }
+  .menu { list-style: none; margin: 0; padding: 0; }
+  .menu a {
+    display: block;
+    padding: 4px 0;
+    font-family: var(--display);
+    font-size: 34px;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    color: var(--ink);
+    transition: transform .35s cubic-bezier(.2,.8,.2,1), color .25s;
+  }
+  .menu a:hover, .menu a.active { color: var(--paper); transform: translateX(14px); }
+  .menu li:nth-child(1) a { margin-left: 0; }
+  .menu li:nth-child(2) a { margin-left: 24px; }
+  .menu li:nth-child(3) a { margin-left: 42px; }
+  .menu li:nth-child(4) a { margin-left: -8px; }
+  .menu li:nth-child(5) a { margin-left: 22px; }
+  .panel-foot {
+    margin-top: auto;
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--paper);
+    padding-right: 40px;
+  }
+  .panel-foot a { text-decoration: underline; text-underline-offset: 4px; }
+
+  /* Paint splatter beyond the panel edge */
+  .drop {
+    position: fixed;
+    background: var(--red);
+    z-index: 19;
+    pointer-events: none;
+  }
+  .drop.blob { border-radius: 60% 40% 55% 45% / 50% 60% 40% 50%; }
+  .drop.round { border-radius: 50%; }
+
+  /* Main content */
+  main {
+    margin-left: 0;
+    position: relative;
+    z-index: 1;
+  }
+  section {
+    position: relative;
+    padding: 120px 64px;
+    min-height: 60vh;
+  }
+  .eyebrow {
+    font-size: 13px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--brass);
+    margin: 0 0 12px;
+  }
+  h1, h2, h3 { font-family: var(--display); font-weight: 400; margin: 0; line-height: 0.95; letter-spacing: 0.02em; }
+  h1 { font-size: clamp(64px, 9vw, 128px); text-transform: uppercase; }
+  h2 { font-size: clamp(48px, 6vw, 84px); text-transform: uppercase; margin-bottom: 36px; }
+  h3 { font-size: 34px; text-transform: uppercase; }
+  .lede { font-size: 19px; color: var(--muted); max-width: 620px; margin: 24px 0 0; }
+
+  /* Hero: black-and-white photograph with vignette */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding-bottom: 96px;
+    overflow: hidden;
+    background: var(--ink);
+  }
+  .hero-photo {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 60% 40%, #5b5858 0%, #2a2727 45%, #0E0C0C 100%);
+    filter: grayscale(1) contrast(1.15);
+    transform: scale(1.06);
+    animation: drift 18s ease-in-out infinite alternate;
+  }
+  @keyframes drift { to { transform: scale(1.12) translate(-1%, 1%); } }
+  .hero-vignette {
+    position: absolute; inset: 0;
+    box-shadow: inset 0 0 220px 80px var(--ink);
+    pointer-events: none;
+  }
+  .hero-content { position: relative; z-index: 2; max-width: 900px; }
+  .hero h1 span { display: block; }
+  .hero h1 .reveal-line {
+    display: block;
+    transform: translateY(40px);
+    opacity: 0;
+    animation: lineUp .9s cubic-bezier(.2,.8,.2,1) forwards;
+  }
+  .hero h1 .reveal-line:nth-child(2) { animation-delay: .15s; }
+  .hero h1 .reveal-line:nth-child(3) { animation-delay: .3s; color: var(--red); }
+  @keyframes lineUp { to { transform: none; opacity: 1; } }
+  .cta-row { display: flex; gap: 14px; margin-top: 36px; flex-wrap: wrap; }
+  .btn {
+    display: inline-block;
+    padding: 14px 28px;
+    font-family: var(--display);
+    font-size: 22px;
+    letter-spacing: 0.06em;
+    text-decoration: none;
+    text-transform: uppercase;
+    border: 2px solid var(--red);
+    background: var(--red);
+    color: var(--paper);
+    transition: background .25s, color .25s, transform .25s;
+  }
+  .btn:hover { background: transparent; color: var(--red); transform: translateY(-3px); }
+  .btn.ghost { background: transparent; color: var(--paper); border-color: var(--paper); }
+  .btn.ghost:hover { background: var(--paper); color: var(--ink); }
+
+  /* Stats */
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0,1fr));
+    gap: 24px;
+    margin-top: 16px;
+  }
+  .stat { border-top: 3px solid var(--red); padding-top: 14px; }
+  .stat .num {
+    font-family: var(--display);
+    font-size: 84px;
+    line-height: 1;
+    color: var(--paper);
+  }
+  .stat .label { font-size: 14px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+
+  /* Ventures */
+  .filters { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 28px; }
+  .chip {
+    background: transparent;
+    color: var(--paper);
+    border: 1.5px solid var(--paper);
+    padding: 8px 18px;
+    font-family: var(--body);
+    font-size: 14px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background .2s, color .2s;
+  }
+  .chip.on, .chip:hover { background: var(--red); border-color: var(--red); color: var(--paper); }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 8px;
+  }
+  .card {
+    position: relative;
+    background: var(--ink-2);
+    border: 1px solid #3a3535;
+    padding: 24px;
+    min-height: 230px;
+    display: flex;
+    flex-direction: column;
+    transition: transform .35s cubic-bezier(.2,.8,.2,1), background .3s, border-color .3s;
+    overflow: hidden;
+  }
+  .card::before {
+    content: "";
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 6px;
+    background: var(--red);
+    transform: scaleY(0.25);
+    transform-origin: top;
+    transition: transform .45s cubic-bezier(.2,.8,.2,1);
+  }
+  .card:hover { transform: translateY(-6px); background: var(--ink-3); border-color: var(--red); }
+  .card:hover::before { transform: scaleY(1); }
+  .card.featured { background: var(--red); border-color: var(--red); }
+  .card.featured::before { background: var(--paper); }
+  .card h3 { margin-bottom: 10px; }
+  .card p { margin: 0 0 auto; color: var(--muted); font-size: 16px; }
+  .card.featured p { color: var(--paper); }
+  .tag {
+    margin-top: 18px;
+    align-self: flex-start;
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border: 1px solid currentColor;
+    color: var(--brass);
+  }
+  .card.featured .tag { color: var(--paper); }
+  .card[hidden] { display: none; }
+
+  /* Timeline */
+  .timeline { position: relative; padding-left: 36px; border-left: 2px solid var(--red); }
+  .tl-item { position: relative; padding: 0 0 40px 24px; }
+  .tl-item::before {
+    content: "";
+    position: absolute;
+    left: -49px; top: 6px;
+    width: 18px; height: 18px;
+    background: var(--red);
+    border: 3px solid var(--ink);
+    border-radius: 50%;
+  }
+  .tl-year { font-family: var(--display); font-size: 40px; color: var(--brass); line-height: 1; }
+  .tl-item h3 { font-size: 26px; margin: 6px 0 6px; }
+  .tl-item p { margin: 0; color: var(--muted); }
+
+  /* Thinking / blog */
+  .posts { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px,1fr)); gap: 18px; }
+  .post {
+    display: block;
+    padding: 22px;
+    background: var(--paper);
+    color: var(--ink);
+    text-decoration: none;
+    transition: transform .3s, background .3s;
+  }
+  .post:hover { transform: translateY(-4px); background: #fff; }
+  .post .kicker { font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--red); }
+  .post h3 { font-size: 30px; margin: 8px 0; color: var(--ink); }
+  .post p { margin: 0; font-size: 15px; color: #4a4545; }
+
+  /* Contact */
+  .contact { background: var(--red); color: var(--ink); }
+  .contact h2 { color: var(--paper); }
+  .contact p { font-size: 18px; max-width: 560px; }
+  form { display: grid; gap: 12px; max-width: 560px; margin-top: 28px; }
+  input, textarea {
+    background: var(--paper);
+    color: var(--ink);
+    border: 0;
+    padding: 14px 16px;
+    font-family: var(--body);
+    font-size: 16px;
+    outline: none;
+  }
+  input:focus, textarea:focus { box-shadow: 0 0 0 3px var(--ink); }
+  textarea { min-height: 120px; resize: vertical; }
+  .contact .btn { justify-self: start; background: var(--ink); border-color: var(--ink); }
+  .contact .btn:hover { background: transparent; color: var(--ink); }
+
+  footer {
+    padding: 36px 64px;
+    font-size: 13px;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    border-top: 1px solid #3a3535;
+  }
+
+  /* Our companies */
+  .co-title { font-family: var(--display); font-size: clamp(56px, 8vw, 110px); line-height: 0.95; text-transform: uppercase; margin: 0 0 40px; text-align: center; }
+  .co-title .dot { color: var(--red); }
+  .co-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; max-width: 1100px; margin: 0 auto; }
+  .co-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+    min-height: 220px;
+    padding: 28px 20px;
+    background: var(--ink-2);
+    border: 1px solid #3a3535;
+    text-decoration: none;
+    transition: background .3s, border-color .3s, transform .35s cubic-bezier(.2,.8,.2,1);
+  }
+  .co-card:hover { background: var(--ink-3); border-color: var(--red); transform: translateY(-4px); }
+  .co-mark {
+    width: 72px; height: 72px;
+    border-radius: 50%;
+    background: var(--red);
+    color: var(--paper);
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--display);
+    font-size: 36px;
+  }
+  .co-name { font-size: 18px; letter-spacing: 0.02em; color: var(--paper); text-align: center; }
+  .co-name::after { content: " \203A"; color: var(--brass); }
+
+  /* Scroll reveal */
+  .reveal { opacity: 0; transform: translateY(28px); transition: opacity .8s, transform .8s cubic-bezier(.2,.8,.2,1); }
+  .reveal.in { opacity: 1; transform: none; }
+
+  /* Responsive */
+  @media (max-width: 860px) {
+    :root { --panel-w: 210px; }
+    .menu a { font-size: 26px; }
+    section { padding: 72px 28px; }
+    .stats { grid-template-columns: 1fr; }
+    footer { padding: 28px; }
+  }
+  @media (max-width: 620px) {
+    :root { --panel-w: 0px; }
+    .panel { position: static; width: 100%; clip-path: none; padding: 20px; flex-direction: row; flex-wrap: wrap; gap: 14px; align-items: center; }
+    .watch { margin: 0; width: 44px; height: 44px; }
+    .menu { display: flex; flex-wrap: wrap; gap: 4px 14px; }
+    .menu a { font-size: 22px; padding: 0; }
+    .menu a:hover, .menu a.active { transform: none; }
+    .menu li:nth-child(n) a { padding-left: 0; margin-left: 0; }
+    .panel-foot { display: none; }
+    main { margin-left: 0; }
+    .hero { padding-bottom: 60px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+    .reveal { opacity: 1; transform: none; }
+  }
+</style>
+</head>
+<body>
+
+<main>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="hero-photo" aria-hidden="true"></div>
+    <div class="hero-vignette" aria-hidden="true"></div>
+    <div class="hero-content">
+      <p class="eyebrow reveal in">Founder. Operator. Investor.</p>
+      <h1>
+        <span class="reveal-line">Serial entrepreneur.</span>
+        <span class="reveal-line">Building the</span>
+        <span class="reveal-line">next one.</span>
+      </h1>
+      <p class="lede reveal">Business, technology and investments. I start companies, build them to working order, and move on to the next problem worth solving.</p>
+      <div class="cta-row reveal">
+        <a class="btn" href="#ventures">See the ventures</a>
+        <a class="btn ghost" href="#contact">Work with me</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section aria-label="Track record">
+    <div class="stats">
+      <div class="stat reveal"><div class="num" id="years-num">00</div><div class="label">Years in business</div></div>
+      <div class="stat reveal"><div class="num" id="ventures-num">00</div><div class="label">Ventures launched</div></div>
+    </div>
+  </section>
+
+  <!-- VENTURES -->
+  <section id="ventures">
+    <p class="eyebrow reveal">The portfolio</p>
+    <h2 class="reveal">Ventures</h2>
+    <div class="filters reveal" role="group" aria-label="Filter ventures">
+      <button class="chip on" data-filter="all">All</button>
+      <button class="chip" data-filter="business">Business</button>
+      <button class="chip" data-filter="tech">Technology</button>
+    </div>
+    <div class="grid" id="grid">
+      <article class="card featured reveal" data-type="business">
+        <h3><a href="https://madeby.waleedkhan.agency" target="_blank" rel="noopener">MadeByWaleed</a></h3>
+        <p>Android apps and free web tools, published as Made by Waleed.</p>
+        <span class="tag">Live</span>
+      </article>
+      <article class="card reveal" data-type="business">
+        <h3><a href="https://waleedkhan.agency" target="_blank" rel="noopener">Waleed Khan Agency</a></h3>
+        <p>My agency, building websites and digital work for clients.</p>
+        <span class="tag">Live</span>
+      </article>
+      <article class="card reveal" data-type="business">
+        <h3>Brother's Printing &amp; Packaging</h3>
+        <p>All kinds of printing and packaging, for businesses and individuals.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- THINKING / BLOG -->
+  <section id="thinking">
+    <p class="eyebrow reveal">Writing</p>
+    <h2 class="reveal">Thinking</h2>
+    <div class="posts">
+      <a class="post reveal" href="https://blog.vvaleedkhan.com" target="_blank" rel="noopener">
+        <div class="kicker">Blog</div>
+        <h3>Latest post</h3>
+        <p>Placeholder. Pull the real latest posts from blog.vvaleedkhan.com.</p>
+      </a>
+      <a class="post reveal" href="https://blog.vvaleedkhan.com" target="_blank" rel="noopener">
+        <div class="kicker">Blog</div>
+        <h3>Another post</h3>
+        <p>Placeholder. Pull the real latest posts from blog.vvaleedkhan.com.</p>
+      </a>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="contact">
+    <p class="eyebrow reveal" style="color:var(--ink)">Get in touch</p>
+    <h2 class="reveal">Work with me</h2>
+    <p class="reveal">For partnerships, investment, and new ventures. Tell me what you're building.</p>
+    <form class="reveal" onsubmit="event.preventDefault(); this.querySelector('button').textContent='Sent';">
+      <input type="text" name="name" placeholder="Your name" required>
+      <input type="email" name="email" placeholder="Your email" required>
+      <textarea name="message" placeholder="What are you building?" required></textarea>
+      <button class="btn" type="submit">Send message</button>
+    </form>
+  </section>
+
+  <footer>
+    &copy; <span id="year"></span> vvaleedkhan. All rights reserved.
+  </footer>
+
+</main>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Scroll reveal
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+
+  // Venture filters
+  const chips = document.querySelectorAll('.chip');
+  const cards = document.querySelectorAll('#grid .card');
+  chips.forEach((chip) => {
+    chip.addEventListener('click', () => {
+      chips.forEach((c) => c.classList.remove('on'));
+      chip.classList.add('on');
+      const f = chip.dataset.filter;
+      cards.forEach((card) => {
+        card.hidden = !(f === 'all' || card.dataset.type === f);
+      });
+    });
+  });
+
+  // Highlight the nav item for the section in view
+  const links = document.querySelectorAll('.menu a');
+  const sectionIo = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) {
+        links.forEach((l) => l.classList.toggle('active', l.getAttribute('href') === '#' + e.target.id));
+      }
+    });
+  }, { rootMargin: '-45% 0px -45% 0px' });
+  document.querySelectorAll('main section[id]').forEach((s) => sectionIo.observe(s));
+
+  // Stats: years since 2010 and the number of ventures listed
+  document.getElementById('years-num').textContent = String(new Date().getFullYear() - 2010).padStart(2, '0');
+  document.getElementById('ventures-num').textContent = String(document.querySelectorAll('#grid .card').length).padStart(2, '0');
+</script>
+</body>
+</html>
