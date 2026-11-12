@@ -184,12 +184,12 @@
     letter-spacing: 0.06em;
     text-decoration: none;
     text-transform: uppercase;
-    border: 2px solid var(--red);
-    background: var(--red);
-    color: #000;
+    border: 2px solid #000;
+    background: #000;
+    color: #fff;
     transition: background .25s, color .25s, transform .25s;
   }
-  .btn:hover { background: transparent; color: var(--red); transform: translateY(-3px); }
+  .btn:hover { background: transparent; color: #000; transform: translateY(-3px); }
   .btn.ghost { background: transparent; color: var(--paper); border-color: var(--paper); }
   .btn.ghost:hover { background: var(--paper); color: var(--ink); }
 
@@ -223,7 +223,7 @@
     cursor: pointer;
     transition: background .2s, color .2s;
   }
-  .chip.on, .chip:hover { background: var(--red); border-color: var(--red); color: var(--paper); }
+  .chip.on, .chip:hover { background: #000; border-color: #000; color: #fff; }
   .grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
@@ -252,11 +252,11 @@
   }
   .card:hover { transform: translateY(-6px); background: var(--ink-3); border-color: var(--red); }
   .card:hover::before { transform: scaleY(1); }
-  .card.featured { background: var(--red); border-color: var(--red); }
-  .card.featured::before { background: var(--paper); }
+  .card.featured { border: 2px solid var(--red); }
+  
   .card h3 { margin-bottom: 10px; }
   .card p { margin: 0 0 auto; color: var(--muted); font-size: 16px; }
-  .card.featured p { color: var(--paper); }
+  
   .tag {
     margin-top: 18px;
     align-self: flex-start;
@@ -267,7 +267,7 @@
     border: 1px solid currentColor;
     color: var(--brass);
   }
-  .card.featured .tag { color: var(--paper); }
+  
   .card[hidden] { display: none; }
 
   /* Timeline */
@@ -302,7 +302,7 @@
   .post p { margin: 0; font-size: 15px; color: #333; }
 
   /* Contact */
-  .contact { background: var(--red); color: #000; }
+  .contact { background: #F2F2F2; color: #000; border-top: 6px solid var(--red); }
   .contact h2 { color: var(--paper); }
   .contact p { font-size: 18px; max-width: 560px; }
   form { display: grid; gap: 12px; max-width: 560px; margin-top: 28px; }
@@ -320,8 +320,8 @@
   .socials { display: flex; flex-wrap: wrap; gap: 10px; }
   .socials a { font-family: var(--display); font-size: 22px; letter-spacing: .06em; text-transform: uppercase; text-decoration: none; color: #000; border: 2px solid #000; padding: 6px 18px; transition: background .2s, color .2s; }
   .socials a:hover { background: #000; color: #fff; }
-  .contact .btn { justify-self: start; background: #000; border-color: #000; color: #fff; }
-  .contact .btn:hover { background: transparent; color: #000; }
+  .contact .btn { justify-self: start; }
+  
 
   footer {
     padding: 36px 64px;
@@ -353,8 +353,8 @@
   .co-mark {
     width: 72px; height: 72px;
     border-radius: 50%;
-    background: var(--red);
-    color: var(--paper);
+    background: #000;
+    color: #fff;
     display: flex; align-items: center; justify-content: center;
     font-family: var(--display);
     font-size: 36px;
@@ -363,7 +363,7 @@
   .co-name::after { content: " \203A"; color: var(--brass); }
 
 
-  .topnav { position: sticky; top: 0; z-index: 40; background: #FF0000; color: #000000; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 28px; padding: 14px 64px; }
+  .topnav { position: sticky; top: 0; z-index: 40; background: #FFFFFF; color: #000000; border-bottom: 4px solid #FF0000; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 28px; padding: 14px 64px; }
   .topnav .brand { font-family: 'Bebas Neue', Oswald, sans-serif; font-size: 30px; letter-spacing: .04em; color: #000000; text-decoration: none; }
   .topnav ul { list-style: none; display: flex; flex-wrap: wrap; gap: 6px 22px; margin: 0; padding: 0; }
   .topnav a { font-family: 'Bebas Neue', Oswald, sans-serif; font-size: 22px; letter-spacing: .05em; color: #000000; text-decoration: none; }
