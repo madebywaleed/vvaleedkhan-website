@@ -308,7 +308,7 @@
   }
   .post:hover { transform: translateY(-4px); background: #E6E6E6; }
   .post .kicker { font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--red); }
-  .post h3 { font-size: 30px; margin: 8px 0; color: #000; }
+  .post h3 { font-size: 26px; margin: 8px 0; color: #000; line-height: 1.02; }
   .post p { margin: 0; font-size: 15px; color: #333; }
 
   /* Contact */
@@ -488,6 +488,21 @@
     <p class="lede reveal">Notes on building businesses, apps and projects. New posts will be published here.</p>
   </section>
 
+  <section id="blog">
+    <p class="eyebrow reveal">From the blog</p>
+    <h2 class="reveal">Latest from the blog</h2>
+    <p class="lede reveal">Guides and explainers on life, money and paperwork in the UAE and Pakistan.</p>
+    <div class="posts reveal" id="blogPosts" style="margin-top:36px">
+      <a class="post" href="https://blog.vvaleedkhan.com/2026/11/police-clearance-certificate-pakistan.html" target="_blank" rel="noopener"><span class="kicker">Nov 10, 2026</span><h3>Police Clearance Certificate in Pakistan: How to Apply by Province</h3></a>
+      <a class="post" href="https://blog.vvaleedkhan.com/2026/11/uae-driving-licence-suspension.html" target="_blank" rel="noopener"><span class="kicker">Nov 9, 2026</span><h3>UAE Driving Licence Rules 2027: Suspension, Cancellation, Renewal</h3></a>
+      <a class="post" href="https://blog.vvaleedkhan.com/2026/11/best-winter-things-to-do-in-sharjah.html" target="_blank" rel="noopener"><span class="kicker">Nov 6, 2026</span><h3>Best Winter Things to Do in Sharjah (2026-27)</h3></a>
+      <a class="post" href="https://blog.vvaleedkhan.com/2026/11/uae-national-day-2026-plans-free-events.html" target="_blank" rel="noopener"><span class="kicker">Nov 5, 2026</span><h3>UAE National Day 2026: Plans and Free Events</h3></a>
+      <a class="post" href="https://blog.vvaleedkhan.com/2026/11/sharjah-vs-dubai-vs-ajman-cost-of-living.html" target="_blank" rel="noopener"><span class="kicker">Nov 4, 2026</span><h3>Sharjah vs Dubai vs Ajman: Where Should You Live? A Cost Breakdown</h3></a>
+      <a class="post" href="https://blog.vvaleedkhan.com/2026/11/pay-salik-fines-utility-bills-online-uae.html" target="_blank" rel="noopener"><span class="kicker">Nov 4, 2026</span><h3>How to Pay Salik, Fines and Utility Bills Online in the UAE</h3></a>
+    </div>
+    <div class="cta-row reveal"><a class="btn" href="https://blog.vvaleedkhan.com" target="_blank" rel="noopener">Read all posts</a></div>
+  </section>
+
   <section id="contact" class="contact">
     <p class="eyebrow reveal" style="color:#000">Get in touch</p>
     <h2 class="reveal">Work with me</h2>
@@ -514,6 +529,29 @@
     });
   }, { threshold: 0.15 });
   document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+
+
+  // Latest from the blog: refresh the list from the Blogger feed (the list above is the fallback)
+  fetch('https://blog.vvaleedkhan.com/feeds/posts/default?alt=json&max-results=6')
+    .then((r) => r.ok ? r.json() : Promise.reject())
+    .then((d) => {
+      const entries = (d.feed && d.feed.entry) || [];
+      if (!entries.length) return;
+      const box = document.getElementById('blogPosts');
+      const frag = document.createDocumentFragment();
+      entries.forEach((en) => {
+        const link = (en.link || []).find((l) => l.rel === 'alternate');
+        if (!link) return;
+        const a = document.createElement('a');
+        a.className = 'post'; a.href = link.href; a.target = '_blank'; a.rel = 'noopener';
+        const k = document.createElement('span'); k.className = 'kicker';
+        k.textContent = new Date(en.published.$t).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+        const h = document.createElement('h3'); h.textContent = en.title.$t;
+        a.append(k, h); frag.appendChild(a);
+      });
+      if (frag.childNodes.length) box.replaceChildren(frag);
+    })
+    .catch(() => {});
 
   // Venture filters
   const chips = document.querySelectorAll('.chip');
